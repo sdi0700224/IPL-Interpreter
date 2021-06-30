@@ -1,0 +1,27 @@
+argument size args
+argument 1 students
+new grades[students]
+new cntgrd[21]  #cntgrd=counter of grades
+while x < students
+	read n  #read grade
+	grades[x] = n
+	cntgrd[grades[x]] = cntgrd[grades[x]] + 1
+	x = x + 1
+max = 0
+while y <= 20
+	if cntgrd[y] > max
+		max = cntgrd[y]
+	y = y + 1
+while y <= 20
+	if cntgrd[y] > max
+		max = cntgrd[y]
+	y = y + 1
+while z <= 20
+	if cntgrd[z] == max
+		while k < students
+			if grades[k] == z
+				c = k + 1
+				write c  #print student(s) with max grade
+			k = k + 1
+		writeln z  #print max grade
+	z = z + 1

@@ -1,0 +1,153 @@
+MINNUM = 100
+MAXNUM = 100000
+MAXK = 4
+COMPUTATIONS = 20
+counter = 0         #counter counts k-almost primes
+semi_counter = 0     #semi_counter counts semiprimes
+num = MINNUM
+while num <= MAXNUM 
+	h = num         
+	m = 0         #m counts the number of prime factors of the number 
+	r = num % 2
+	while r == 0       #this loop counts how many times 2 is a prime factor  
+		if  m < MAXK 
+			num = num / 2
+			m = m + 1
+			if  m == 1            
+				d1 = 2           #d1 is the first prime factor of the number 
+			r = num % 2
+		else
+			r = 1
+	r = num % 3
+	while r == 0     #this loop counts how many times 3 is a prime factor 
+		if  m < MAXK 
+			num = num / 3
+			m = m + 1
+			if  m == 1 
+				d1 = 3
+			r = num % 3
+		else
+			r = 1
+	j = 5           #j is the next prime factor 
+	f = 1          #f is a variable with two values, 0 or 1 
+	x = 1           #is the variable in the 6*x+-1 formula used to find prime numbers 
+	while num != 1    #external loop that determins the end of prime factorisation 
+		if  m < MAXK 
+			r = num % j
+			while r == 0       #this loop counts how many times j is a prime factor 
+				if  m < MAXK 
+					num = num / j
+					m = m + 1
+					if  m == 1 
+						d1 = j
+					r = num % j
+				else
+					r = 1
+			if f != 0                 #for f=1 we use the 6*x+1 formula 
+				w = 6 * x
+				j = w + 1           #j becomes the next prime factor 
+				f = 0     #f must change value to use the 6*x-1 formula 
+				x = x + 1    #x changes only when f is 1 
+			else
+				w = 6 * x
+				j = w - 1
+				f = 1
+			#the following if statement practicaly stops the external loop when j is greater than the root of the number 
+			w = j * j
+			if  h < w  
+				if  num != 1 
+					num = 1                            #num becomes 1 so the external loop stops 
+					m = m + 1
+					if  m == 1 
+						d1 = j
+		else
+			num = 1
+			m = 0
+	if  m >= 2 
+		if  num == 1    
+			counter = counter + 1     
+			if m == 2 
+				semi_counter = semi_counter + 1
+				d2 = h / d1        #d2 is the second factor of semiprime number 
+				if  d1 < d2 
+					w = d2 - d1 
+					w = w * 100
+					if w < d2    
+						write d1 
+						write d2
+						writeln h   #h is an interesting semiprime
+				if d2 < d1 
+					w = d1 - d2 
+					w = w * 100 
+					if w < d1
+						write d1 
+						write d2
+						writeln h   #h is an interesting semiprime
+	num = h + 1
+writeln counter
+writeln semi_counter
+i = 1
+counter = 0          #counter counts k-almost primes
+semi_counter = 0     #semi_counter counts semiprimes
+while i <= COMPUTATIONS
+	random y
+	y = y % 32768
+	y = y + 1
+	random z
+	z = z % 32768
+	z = 1 + z
+	x = y * z
+	x = x + 1
+	h = x        
+	m = 0           #m counts the number of prime factors of the number(m is the k)#
+	r = x % 2
+	while r == 0      #this loop counts how many times 2 is a prime factor  
+		x = x / 2
+		m = m + 1
+		if m == 1            
+			d1 = 2           #d1 is the first prime factor of the number 
+		r = x % 2    
+	r = x % 3
+	while r == 0     #this loop counts how many times 3 is a prime factor
+		x = x / 3
+		m = m + 1
+		if m == 1
+			d1 = 3
+		r = x % 3
+	j = 5                   #j is the next prime factor
+	f = 1                   #f is a variable with two values, 0 or 1
+	d = 1                  #is the variable in the 6*d+-1 formula used to find prime numbers
+	while x != 1   #external loop that determins the end of prime factorisation
+		r = x % j
+		while r == 0       #this loop counts how many times j is a prime factor
+			x = x / j
+			m = m + 1
+			if  m == 1
+				d1 = j
+			r = x % j
+		if f != 0             #for f=1 we use the 6*x+1 formula
+			w = 6 * d
+			j = w + 1           #j becomes the next prime factor
+			f = 0               #f must change value to use the 6*x-1 formula
+			d = d + 1              #d changes only when f is 1
+		else
+			w = 6 * d
+			j = w - 1
+			f = 1
+		#the following if statement practicaly stops the external loop when j is greater than the root of the number
+		w = j * j
+		if h < w
+			if x != 1   
+				x = 1                            #curtime becomes 1 so the external loop stops
+				m = m + 1
+				if m == 1
+					d1 = j
+	if m >= 2 
+		if x == 1  
+			counter = counter + 1   
+			if m == 2 
+				semi_counter = semi_counter + 1 
+				d2 = h / d1           #d2 is the second factor of semiprime number
+	i = i + 1
+	write h
+	writeln m

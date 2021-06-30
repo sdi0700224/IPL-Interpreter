@@ -1,0 +1,78 @@
+MINNUM = 100
+MAXNUM = 100000
+MAXK = 4
+COMPUTATIONS = 10
+while MINNUM < MAXNUM
+	k = 0
+	j = 0
+	sumfact = 0
+	x = MINNUM
+	remainder = x % 2
+	while remainder == 0
+		sumfact = sumfact + 1
+		x = x / 2
+		remainder = x % 2
+	factor = 3            # check if 3, 5, 7, ... are factors
+	factor2 = factor * factor
+	while factor2 <= x    # stop at the square root 
+		remainder = x % factor
+		while remainder == 0
+			k = factor
+			sumfact = sumfact + 1
+			x = x / factor
+			remainder = x % factor
+		factor = factor + 2
+		factor2 = factor * factor
+		if sumfact == 1
+			j = k
+	if x != 1
+		k = x
+		sumfact = sumfact + 1
+	if sumfact == 2
+		semiprimes = semiprimes + 1
+		temp2 = j
+		j = k - j
+		j = j * 100
+		if j < k
+			if j != 0
+				write temp2
+				write k
+				writeln MINNUM
+	if sumfact >= 2
+		if sumfact <= MAXK
+			almostk = almostk + 1
+	MINNUM = MINNUM + 1
+writeln almostk
+writeln semiprimes
+MINNUM = 1
+while MINNUM <= 10
+	sumfact = 0
+	random y
+	y = y % 32768
+	y = y + 1
+	random z
+	z = z % 32768
+	z = 1 + z
+	x = y * z
+	x = x + 1
+	temp = x
+	remainder = x % 2
+	while remainder == 0
+		sumfact = sumfact + 1
+		x = x / 2
+		remainder = x % 2
+	factor = 3            # check if 3, 5, 7, ... are factors
+	factor2 = factor * factor
+	while factor2 <= x    # stop at the square root 
+		remainder = x % factor
+		while remainder == 0
+			sumfact = sumfact + 1
+			x = x / factor
+			remainder = x % factor
+		factor = factor + 2
+		factor2 = factor * factor
+	if x != 1
+		sumfact = sumfact + 1
+	write temp
+	writeln sumfact
+	MINNUM = MINNUM + 1
