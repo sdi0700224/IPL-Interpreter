@@ -1,6 +1,6 @@
 # paths
-MODULES = ../ipli
-INCLUDE = ../ipli
+MODULES = ../Ipli
+INCLUDE = ../Ipli
 
 # compiler
 CC = gcc
@@ -15,7 +15,7 @@ OBJS = ipli.o $(MODULES)/iplfunction.o ipllexer.o
 EXEC = ipli
 
 # Παράμετροι για δοκιμαστική εκτέλεση
-ARGS = 15
+ARGS = primes.ipl
 
 $(EXEC): $(OBJS)
 	$(CC) $(OBJS) -o $(EXEC)
